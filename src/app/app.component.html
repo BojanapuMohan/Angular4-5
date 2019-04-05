@@ -1,0 +1,61 @@
+<!-- 
+<mat-toolbar color="primary">
+	<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+	<h1>Responsive App</h1>
+</mat-toolbar>
+
+<div fxLayout="row">
+	<mat-drawer-container>
+		<mat-drawer #snav [mode]="'side'">
+			<mat-nav-list>
+				<a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+			</mat-nav-list>
+		</mat-drawer>
+
+		<mat-drawer-content>
+		  
+		</mat-drawer-content>
+	</mat-drawer-container>
+</div> -->
+{{ROUTES}}
+
+
+<mat-drawer-container
+[class.drawer-opened]="drawer.opened"
+class="example-container">
+<mat-drawer #drawer 
+  class="drawer mat-app-background" 
+  mode="side" 
+  opened="true">
+
+  <mat-toolbar class="header">
+    <img src="assets/desktop.png">
+    <div>Angular4/5</div>
+    <mat-icon class="close"
+   (click)="drawer.close()">close</mat-icon>
+  </mat-toolbar>
+  <div class="contents mat-app-background">
+    <mat-nav-list class="mat-list-item-focus">
+      <a mat-list-item  *ngFor="let nav of menu" routerLink="{{nav.path}}" routerLinkActive="active-link">{{nav.name}}</a>
+    </mat-nav-list>
+  </div>
+</mat-drawer>
+
+<mat-toolbar class="main header ">
+  <mat-icon
+    *ngIf="!drawer.opened"
+    (click)="drawer.toggle()">
+    menu
+  </mat-icon>
+  <div> Angular Components</div>
+</mat-toolbar>
+
+<div class="main contents">
+  <router-outlet></router-outlet>
+</div>
+
+
+<mat-toolbar class="main footer">
+  Copyright 2018 https://github.com/BojanapuMohan. All Rights Reserved.
+</mat-toolbar>
+</mat-drawer-container>
